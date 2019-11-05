@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Eliminated some GC allocations from the 2D Renderer.
 - Added SceneSelection pass for TerrainLit shader.
 - Deprecated the CinemachineUniversalPixelPerfect extension. Use the one from Cinemachine v2.4 instead.
+- Remove final blit pass to force alpha to 1.0 on mobile platforms.
 - Replaced PlayerSettings.virtualRealitySupported with XRGraphics.tryEnable.
 - Particle shaders now receive shadows
 
