@@ -78,8 +78,12 @@ namespace UnityEngine.Experimental.Rendering.Universal
             drawingSettings.overrideMaterial = overrideMaterial;
             drawingSettings.overrideMaterialPassIndex = overrideMaterialPassIndex;
 
-            Camera camera = renderingData.cameraData.camera;
-            float cameraAspect = (float) camera.pixelWidth / (float) camera.pixelHeight;
+            ref CameraData cameraData = ref renderingData.cameraData;
+            Camera camera = cameraData.camera;
+
+            // In case of camera stacking we need to take the viewport rect from base camera
+            Rect pixelRect = renderingData.cameraData.pixelRect;
+            float cameraAspect = (float) pixelRect.width / (float) pixelRect.height;
             CommandBuffer cmd = CommandBufferPool.Get(m_ProfilerTag);
             using (new ProfilingSample(cmd, m_ProfilerTag))
             {
@@ -104,11 +108,8 @@ namespace UnityEngine.Experimental.Rendering.Universal
 
                 if (m_CameraSettings.overrideCamera && m_CameraSettings.restoreCamera)
                 {
-                    Matrix4x4 projectionMatrix = Matrix4x4.Perspective(camera.fieldOfView, cameraAspect,
-                        camera.nearClipPlane, camera.farClipPlane);
-
                     cmd.Clear();
-                    cmd.SetViewProjectionMatrices(camera.worldToCameraMatrix, projectionMatrix);
+                    cmd.SetViewProjectionMatrices(cameraData.viewMatrix, cameraData.projectionMatrix);
                 }
             }
             context.ExecuteCommandBuffer(cmd);
