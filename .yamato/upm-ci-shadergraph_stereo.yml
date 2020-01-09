@@ -131,7 +131,6 @@ Build_{{ project.name }}_Win_Player_{{ editor.version }}:
 All_{{ project.name }}_{{ editor.version }}:
   name: All {{ project.name }} CI - {{ editor.version }}
   dependencies:
-  {% for editor in editors %}
   {% for platform in platforms %}
   {% for testplatform in testplatforms %}
     - .yamato/upm-ci-{{ project.name | downcase }}.yml#{{ project.name }}_{{ platform.name }}_{{ testplatform.name }}_{{ editor.version }}
@@ -148,6 +147,5 @@ All_{{ project.name }}_{{ editor.version }}:
   #       - "**/*.md"
   # {% endif %}
 
-{% endfor %}
 {% endfor %}
 {% endfor %}
