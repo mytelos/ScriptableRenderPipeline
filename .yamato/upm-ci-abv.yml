@@ -54,9 +54,7 @@ all_project_ci_nightly:
     - path: .yamato/upm-ci-{{ project.name | downcase }}.yml#All_{{ project.name }}_2019.3
       rerun: always
   {% endfor %}
-  {% for testplatform in testplatforms %} 
-    - .yamato/upm-ci-abv.yml#smoke_test_{{ testplatform.name }}_2019.3
-  {% endfor %}
+    - .yamato/upm-ci-abv.yml#all_smoke_tests_2019.3
   triggers:
     recurring:
       - branch: release/2019.3
@@ -92,14 +90,14 @@ smoke_test_{{ testplatform.name }}_{{ editor.version }}:
 {% endfor %}
 {% endfor %}
 
-all_smoke_tests:
-  name: All Smoke Tests
+{% for editor in editors %}
+all_smoke_tests_{{ editor.version }}:
+  name: All Smoke Tests -  {{ editor.version }}
   dependencies:
   {% for testplatform in testplatforms %} 
-  {% for editor in editors %}
   - .yamato/upm-ci-abv.yml#smoke_test_{{ testplatform.name }}_{{ editor.version }}
   {% endfor %}
-  {% endfor %}
+{% endfor %}
 
 trunk_verification:
   name: z_(do not use) Trunk verification 
