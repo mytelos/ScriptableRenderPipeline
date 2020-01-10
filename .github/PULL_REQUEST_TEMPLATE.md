@@ -1,4 +1,4 @@
-**DONT FORGET TO ADD A CHANGELOG**
+**DON'T FORGET TO ADD A CHANGELOG**
 
 ### Checklist for PR maker
 - [ ] Have you added a backport label (if needed)? For example, the `need-backport-2019.3` label. After you backport the PR, the label changes to `backported-2019.3`.
