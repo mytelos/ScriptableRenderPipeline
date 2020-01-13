@@ -59,7 +59,6 @@ namespace UnityEditor.Rendering.Universal
             public static GUIContent colorGradingMode = EditorGUIUtility.TrTextContent("Grading Mode", "Defines how color grading will be applied. Operators will react differently depending on the mode.");
             public static GUIContent colorGradingLutSize = EditorGUIUtility.TrTextContent("LUT size", "Sets the size of the internal and external color grading lookup textures (LUTs).");
             public static string postProcessingFeatureSetWarning = "Unity plans to deprecate Post-processing V2 support for the Universal Render Pipeline in the near future. You should only use this mode for compatibility purposes.";
-            public static string postProcessingFeatureSetError = "Your Project does not include the Post-processing V2 package. The Universal Render Pipeline will use its Integrated post-processing solution.";
             public static string colorGradingModeWarning = "HDR rendering is required to use the high dynamic range color grading mode. The low dynamic range will be used instead.";
             public static string colorGradingModeSpecInfo = "The high dynamic range color grading mode works best on platforms that support floating point textures.";
             public static string colorGradingLutSizeWarning = "The minimal recommended LUT size for the high dynamic range color grading mode is 32. Using lower values will potentially result in color banding and posterization effects.";
@@ -351,18 +350,17 @@ namespace UnityEditor.Rendering.Universal
 
                 EditorGUI.indentLevel++;
 
+                bool ppv2Enabled = false;
+
+#if POST_PROCESSING_STACK_2_0_0_OR_NEWER
                 EditorGUILayout.PropertyField(m_PostProcessingFeatureSet, Styles.postProcessingFeatureSet);
 
-                bool ppv2Enabled = false;
                 if (m_PostProcessingFeatureSet.intValue == (int)PostProcessingFeatureSet.PostProcessingV2)
                 {
-#if POST_PROCESSING_STACK_2_0_0_OR_NEWER
                     EditorGUILayout.HelpBox(Styles.postProcessingFeatureSetWarning, MessageType.Warning);
                     ppv2Enabled = true;
-#else
-                    EditorGUILayout.HelpBox(Styles.postProcessingFeatureSetError, MessageType.Error);
-#endif
                 }
+#endif
 
                 if (!ppv2Enabled)
                 {
