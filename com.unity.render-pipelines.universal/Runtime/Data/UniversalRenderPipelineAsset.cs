@@ -599,7 +599,7 @@ namespace UnityEngine.Rendering.Universal
 #if POST_PROCESSING_STACK_2_0_0_OR_NEWER
                 return m_PostProcessingFeatureSet;
 #else
-                return PostProcessingFeatureSet.Builtin;
+                return PostProcessingFeatureSet.Integrated;
 #endif
             }
             set
@@ -607,7 +607,7 @@ namespace UnityEngine.Rendering.Universal
 #if POST_PROCESSING_STACK_2_0_0_OR_NEWER
                 m_PostProcessingFeatureSet = value;
 #else
-                m_PostProcessingFeatureSet = PostProcessingFeatureSet.Builtin;
+                m_PostProcessingFeatureSet = PostProcessingFeatureSet.Integrated;
 #endif
             }
         }
