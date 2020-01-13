@@ -1,5 +1,7 @@
 * [High Definition Render Pipeline](index)
-* [Features List](HDRP-Features)
+* Features
+  * [Features List](HDRP-Features)
+  * [Comparison with the Built-in Render Pipeline](Feature-Comparison)
 * Getting started
   * [Getting Started with HDRP](Getting-started-with-HDRP)
   * [Upgrading to HDRP](Upgrading-To-HDRP)
@@ -59,6 +61,7 @@
     * [Unlit Shader](Unlit-Shader)
   * Shader Graph Master Nodes
     * [Customizing Materials Using Master Nodes](Creating-and-Editing-HDRP-Shader-Graphs)
+    * [Decal](Master-Node-Decal)
     * [Hair](Master-Node-Hair)
     * [Unlit](Master-Node-Unlit)
   * Shader Graph Nodes
