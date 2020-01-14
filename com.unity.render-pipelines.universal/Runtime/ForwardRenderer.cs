@@ -220,6 +220,17 @@ namespace UnityEngine.Rendering.Universal
 
             EnqueuePass(m_RenderOpaqueForwardPass);
 
+#if POST_PROCESSING_STACK_2_0_0_OR_NEWER
+#pragma warning disable 0618 // Obsolete
+            bool hasOpaquePostProcessCompat = applyPostProcessing &&
+                postProcessFeatureSet == PostProcessingFeatureSet.PostProcessingV2 &&
+                renderingData.cameraData.postProcessLayer.HasOpaqueOnlyEffects(RenderingUtils.postProcessRenderContext);
+
+            if (hasOpaquePostProcessCompat)
+                m_OpaquePostProcessPassCompat.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment, m_ActiveCameraColorAttachment);
+#pragma warning restore 0618
+#endif
+
             bool isOverlayCamera = cameraData.renderType == CameraRenderType.Overlay;
             if (camera.clearFlags == CameraClearFlags.Skybox && RenderSettings.skybox != null && !isOverlayCamera)
                 EnqueuePass(m_DrawSkyboxPass);
