@@ -92,15 +92,43 @@ namespace UnityEngine.Rendering.Universal
         _2DRenderer,
     }
 
+    /// <summary>
+    /// The available color grading modes to use for the Project.
+    /// </summary>
     public enum ColorGradingMode
     {
+        /// <summary>
+        /// This mode follows a more classic workflow. Unity applies a limited range of color
+        /// grading after tonemapping.
+        /// </summary>
         LowDynamicRange,
+
+        /// <summary>
+        /// This mode works best for high precision grading similar to movie production workflow.
+        /// Unity applies color grading before tonemapping.
+        /// </summary>
         HighDynamicRange
     }
 
+    /// <summary>
+    /// The available post-processing solutions to use for the project. To future proof your
+    /// application, use <see cref="Integrated"/> instead of the comparability mode. Only use
+    /// compatibility mode if your project still uses the Post-processing V2 package, but be aware
+    /// that Unity plans to deprecate Post-processing V2 support for the Universal Render Pipeline
+    /// in the near future.
+    /// </summary>
     public enum PostProcessingFeatureSet
     {
+        /// <summary>
+        /// The integrated post-processing stack.
+        /// </summary>
         Integrated,
+
+        /// <summary>
+        /// The post-processing stack v2. This option only works if the package is installed in the
+        /// project. Be aware that Unity plans to deprecate Post-processing V2 support for the
+        /// Universal Render Pipeline in the near future.
+        /// </summary>
         PostProcessingV2
     }
 
@@ -592,6 +620,9 @@ namespace UnityEngine.Rendering.Universal
             set { m_UseSRPBatcher = value; }
         }
 
+        /// <summary>
+        /// The post-processing solution used in the project.
+        /// </summary>
         public PostProcessingFeatureSet postProcessingFeatureSet
         {
             get
@@ -612,12 +643,20 @@ namespace UnityEngine.Rendering.Universal
             }
         }
 
+        /// <summary>
+        /// The color grading mode used in the project.
+        /// </summary>
         public ColorGradingMode colorGradingMode
         {
             get { return m_ColorGradingMode; }
             set { m_ColorGradingMode = value; }
         }
 
+        /// <summary>
+        /// The color grading LUT size used in the project. Higher sizes provide more precision, but
+        /// have a potential cost of performance and memory use. You cannot mix and match LUT sizes,
+        /// so decide on a size before you start the color grading process.
+        /// </summary>
         public int colorGradingLutSize
         {
             get { return m_ColorGradingLutSize; }
