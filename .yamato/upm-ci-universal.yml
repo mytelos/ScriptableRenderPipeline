@@ -97,8 +97,8 @@ linux_apis:
 Build_{{ project.name }}_Win_{{ win_api.name }}_Player_{{ editor.version }}:
   name : Build {{ project.name }} on Win_{{ win_api.name }}_Player on version {{ editor.version }}
   agent:
-    flavor: b1.xlarge
-    type: Unity::VM
+    flavor: b1.large
+    type: Unity::VM::GPU
     image: sdet/gamecode_win10:stable
 {% if editor.version == 'CUSTOM-REVISION' %}
   variables:
