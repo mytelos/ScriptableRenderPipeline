@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a bug where `Object to Tangent` transforms in the `Transform` node used the wrong matrix. [1162203](https://issuetracker.unity3d.com/issues/shadergraph-transform-node-from-object-to-tangent-space-uses-the-wrong-matrix)
 - Fixed an issue where boolean keywords in a Shader Graph would cause HDRP material features to fail. [1204827](https://issuetracker.unity3d.com/issues/hdrp-shadergraph-adding-a-boolean-keyword-to-an-hdrp-lit-shader-makes-material-features-not-work)
 - Fixed a bug where object space normals would scale with object scale. 
+- Documentation links on nodes now point to the correct URLs and package versions.
 
 ### Fixed
 - You can now smoothly edit controls on the `Dielectric Specular` node.
