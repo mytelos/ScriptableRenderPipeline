@@ -78,7 +78,7 @@ linux_apis:
     CUSTOM_REVISION: custom_revision_not_set
 {% endif %}
   commands:
-    - git clone git@github.cds.internal.unity3d.com:unity/utr.git TestProjects/{{ project.folder }}/utr
+    - git clone git@github.cds.internal.unity3d.com:unity/utr.git -b staging TestProjects/{{ project.folder }}/utr
     - pip install unity-downloader-cli --extra-index-url https://artifactory.eu-cph-1.unityops.net/api/pypi/common-python/simple --pre
     {% if editor.version == 'CUSTOM-REVISION' %}
     - cd TestProjects/{{ project.folder }} && unity-downloader-cli {{ editor.cmdwin }} -c editor --wait --published
@@ -98,14 +98,14 @@ Build_{{ project.name }}_Win_{{ win_api.name }}_Player_{{ editor.version }}:
   name : Build {{ project.name }} on Win_{{ win_api.name }}_Player on version {{ editor.version }}
   agent:
     flavor: b1.large
-    type: Unity::VM::GPU
+    type: Unity::VM
     image: sdet/gamecode_win10:stable
 {% if editor.version == 'CUSTOM-REVISION' %}
   variables:
     CUSTOM_REVISION: custom_revision_not_set
 {% endif %}
   commands:
-    - git clone git@github.cds.internal.unity3d.com:unity/utr.git  TestProjects/{{ project.folder }}/utr
+    - git clone git@github.cds.internal.unity3d.com:unity/utr.git -b staging TestProjects/{{ project.folder }}/utr
     - pip install unity-downloader-cli --extra-index-url https://artifactory.eu-cph-1.unityops.net/api/pypi/common-python/simple --pre
     {% if editor.version == 'CUSTOM-REVISION' %}
     - cd TestProjects/{{ project.folder }} && unity-downloader-cli {{ editor.cmdwin }} -c editor --wait --published
